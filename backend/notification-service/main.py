@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/notifications', methods=['GET'])
 def notifications():
-    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    connection = pika.BlockingConnection(pika.ConnectionParameters('rabbitmq'))
     channel = connection.channel()
     channel.queue_declare(queue='orders')
 

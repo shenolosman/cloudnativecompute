@@ -24,14 +24,14 @@ func init() {
 	var err error
 
 	// MongoDB conn
-	mongoClient, err = mongo.Connect(ctx, options.Client().ApplyURI("mongodb://mongoadmin:MysecretPassword@localhost:27018"))
+	mongoClient, err = mongo.Connect(ctx, options.Client().ApplyURI("mongodb://my_user:my_password@mongodb:27017"))
 	if err != nil {
 		panic(err)
 	}
 
 	// Redis conn
 	redisClient = redis.NewClient(&redis.Options{
-		Addr: "localhost:6379",
+		Addr: "redis:6379",
 	})
 
 	//create test product
@@ -68,9 +68,9 @@ func initializeTestProduct() {
 	collection := mongoClient.Database("product_db").Collection("products")
 	_, err := collection.InsertOne(ctx, testProduct)
 	if err != nil {
-		log.Printf("MongoDB'ye test ürünü eklenirken hata oluştu: %v\n", err)
+		log.Printf("Error occurred while saving test product to MongoDB: %v\n", err)
 	} else {
-		log.Println("Test ürünü MongoDB'ye başarıyla eklendi.")
+		log.Println("test product saved to MongoDB.")
 	}
 
 	// save test product to Redis

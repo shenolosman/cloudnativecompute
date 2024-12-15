@@ -10,12 +10,12 @@ app = Flask(__name__)
 # config should be in env
 SECRET_KEY = "my_super_duber_secret_key_2024_!"
 POSTGRES_CONFIG = {
-    "host": "localhost",
+    "host": "postgres",
     "database": "auth_db",
     "user": "myuser",
     "password": "mypassword",
 }
-REDIS_HOST = "localhost"
+REDIS_HOST = "redis"
 REDIS_PORT = 6379
 
 
